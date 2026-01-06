@@ -1,0 +1,20 @@
+name: "Docker Build & Deploy Action"
+description: "Builds a Docker image and pushes it to AWS ECR"
+author: "Hemant Ghosale"
+inputs:
+  aws-region:
+    description: "AWS region for ECR"
+    required: true
+  ecr-repo:
+    description: "Name of ECR repository"
+    required: true
+  image-tag:
+    description: "Docker image tag"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.aws-region }}
+    - ${{ inputs.ecr-repo }}
+    - ${{ inputs.image-tag }}
